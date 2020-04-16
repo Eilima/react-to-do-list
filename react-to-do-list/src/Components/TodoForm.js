@@ -22,7 +22,6 @@ export class TodoForm extends React.Component {
   render() {
     return (
       <div>
-        <p>Enter a Task below!</p>
         <form onSubmit={this.handleSubmit}>
           <input
             name="text"

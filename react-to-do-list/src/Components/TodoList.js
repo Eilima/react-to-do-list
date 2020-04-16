@@ -2,6 +2,7 @@ import React from "react";
 import { TodoForm } from "./TodoForm";
 import Todo from "./Todo";
 import TaskLeft from "./TaskLeft";
+import { FilterButtons } from "./FilterButtons";
 
 export class TodoList extends React.Component {
   state = {
@@ -50,6 +51,7 @@ export class TodoList extends React.Component {
       <div>
         <TaskLeft tasks={this.state.tasks} />
         <TodoForm onSubmit={this.addTask} />
+        <FilterButtons handleClick={this.handleClick} />
         {tasks.map((task) => (
           <Todo
             key={task.id}
@@ -57,12 +59,6 @@ export class TodoList extends React.Component {
             toggleComplete={() => this.toggleComplete(task.id)}
           />
         ))}
-
-        <div>
-          <button onClick={() => this.handleClick("all")}>All</button>
-          <button onClick={() => this.handleClick("active")}>Active</button>
-          <button onClick={() => this.handleClick("complete")}>Complete</button>
-        </div>
       </div>
     );
   }
