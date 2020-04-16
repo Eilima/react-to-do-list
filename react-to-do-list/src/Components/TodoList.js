@@ -1,6 +1,7 @@
 import React from "react";
 import { TodoForm } from "./TodoForm";
 import Todo from "./Todo";
+import TaskLeft from "./TaskLeft";
 
 export class TodoList extends React.Component {
   state = {
@@ -28,6 +29,12 @@ export class TodoList extends React.Component {
     });
   };
 
+  handleClick = (string) => {
+    this.setState({
+      tasksToShow: string,
+    });
+  };
+
   render() {
     let tasks = [];
 
@@ -41,21 +48,20 @@ export class TodoList extends React.Component {
 
     return (
       <div>
+        <TaskLeft tasks={this.state.tasks} />
         <TodoForm onSubmit={this.addTask} />
-        {this.state.tasks.map((task) => (
+        {tasks.map((task) => (
           <Todo
             key={task.id}
             task={task}
             toggleComplete={() => this.toggleComplete(task.id)}
           />
         ))}
+
         <div>
-          Tasks left: {this.state.tasks.filter((x) => !x.complete).length}
-        </div>
-        <div>
-          <button>All</button>
-          <button>Active</button>
-          <button>Complete</button>
+          <button onClick={() => this.handleClick("all")}>All</button>
+          <button onClick={() => this.handleClick("active")}>Active</button>
+          <button onClick={() => this.handleClick("complete")}>Complete</button>
         </div>
       </div>
     );
