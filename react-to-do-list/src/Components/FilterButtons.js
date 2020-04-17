@@ -1,8 +1,7 @@
 import React from "react";
 
-//Adds functionality for filter buttons.
+//Adds functionality for buttons that will filter tasks.
 //Three options for buttons, 'all', 'active' and 'complete'.
-
 export class FilterButtons extends React.Component {
   render() {
     return (
