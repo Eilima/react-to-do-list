@@ -45,10 +45,13 @@ export class TodoList extends React.Component {
   };
 
   render() {
+    //Sets an array that allows us to down below not have to call components state
     let tasks = [];
-
+    //Depending on the value of the state 'tasksToShow' it will save that the current state of 'tasks' to the array above.
     if (this.state.tasksToShow === "all") {
+      //Sets the array equal to the same values of the state
       tasks = this.state.tasks;
+      //Sets the array equal to the values that are equal to "complete" being false
     } else if (this.state.tasksToShow === "active") {
       tasks = this.state.tasks.filter((task) => !task.complete);
     } else if (this.state.tasksToShow === "complete") {
