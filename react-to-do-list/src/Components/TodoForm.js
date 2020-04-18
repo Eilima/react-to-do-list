@@ -1,5 +1,7 @@
 import React from "react";
 import shortid from "shortid";
+import { Button } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 export class TodoForm extends React.Component {
   state = {
@@ -23,13 +25,17 @@ export class TodoForm extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input
+          <TextField
+            id="filled-basic"
+            label="Enter a task!"
             name="text"
             value={this.state.text}
             placeholder="Enter a task!"
             onChange={this.handleChange}
           />
-          <button onClick={this.handleSubmit}>Add to the list</button>
+          <Button variant="outlined" color="blue" onClick={this.handleSubmit}>
+            Add to the list
+          </Button>
         </form>
       </div>
     );

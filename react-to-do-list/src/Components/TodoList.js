@@ -37,7 +37,7 @@ export class TodoList extends React.Component {
     });
   };
   //Method that handle updating state with the string passed to it.
-  //Used for filter buttons
+  //Used for filter buttonsf
   handleClick = (string) => {
     this.setState({
       tasksToShow: string,
@@ -51,10 +51,11 @@ export class TodoList extends React.Component {
     if (this.state.tasksToShow === "all") {
       //Sets the array equal to the same values of the state
       tasks = this.state.tasks;
-      //Sets the array equal to the values that are equal to "complete" being false
     } else if (this.state.tasksToShow === "active") {
+      //Sets the array equal to the values that are equal to "complete" being false
       tasks = this.state.tasks.filter((task) => !task.complete);
     } else if (this.state.tasksToShow === "complete") {
+      ///Sets the array equal to teh values that are equal to "complete" being true
       tasks = this.state.tasks.filter((task) => task.complete);
     }
 
