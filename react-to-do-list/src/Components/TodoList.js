@@ -62,7 +62,6 @@ export class TodoList extends React.Component {
 
     return (
       <div>
-        <Header />
         <TaskLeft tasks={this.state.tasks} />
         <TodoForm onSubmit={this.addTask} />
         <FilterButtons handleClick={this.handleClick} />
