@@ -3,6 +3,7 @@ import { TodoForm } from "./TodoForm";
 import Todo from "./Todo";
 import TaskLeft from "./TaskLeft";
 import { FilterButtons } from "./FilterButtons";
+import { Header } from "./Header";
 
 export class TodoList extends React.Component {
   //Setting the state for parent component
@@ -61,6 +62,7 @@ export class TodoList extends React.Component {
 
     return (
       <div>
+        <Header />
         <TaskLeft tasks={this.state.tasks} />
         <TodoForm onSubmit={this.addTask} />
         <FilterButtons handleClick={this.handleClick} />
