@@ -52,9 +52,20 @@ export class TodoList extends React.Component {
       tasks: this.state.tasks.filter((todo) => todo.id !== id),
     });
   };
+
   completedTasks = () => {
     this.setState({
       tasks: this.state.tasks.filter((todo) => !todo.complete),
+    });
+  };
+
+  toggleAllComplete = () => {
+    this.setState({
+      tasks: this.state.tasks.map((task) => ({
+        ...task,
+        complete: this.state.toggleAllComplete,
+      })),
+      toggleAllComplete: !this.state.toggleAllComplete,
     });
   };
 
@@ -98,17 +109,7 @@ export class TodoList extends React.Component {
           </div>
         ) : null}
         <div>
-          <Button
-            onClick={() => {
-              this.setState({
-                tasks: this.state.tasks.map((task) => ({
-                  ...task,
-                  complete: this.state.toggleAllComplete,
-                })),
-                toggleAllComplete: !this.state.toggleAllComplete,
-              });
-            }}
-          >
+          <Button onClick={this.toggleAllComplete}>
             Toggle All Complete: {`${this.state.toggleAllComplete}`}{" "}
           </Button>
         </div>
