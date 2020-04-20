@@ -4,6 +4,7 @@ import Todo from "./Todo";
 import TaskLeft from "./TaskLeft";
 import { FilterButtons } from "./FilterButtons";
 import { Header } from "./Header";
+import Button from "@material-ui/core/Button";
 
 export class TodoList extends React.Component {
   //Setting the state for parent component
@@ -11,6 +12,7 @@ export class TodoList extends React.Component {
     //A array with nested arrays for the values of the each individual 'task'
     tasks: [],
     tasksToShow: "all",
+    toggleAllComplete: true,
   };
 
   //Method that adds the value passed to it to the states array, "tasks".
@@ -50,6 +52,11 @@ export class TodoList extends React.Component {
       tasks: this.state.tasks.filter((todo) => todo.id !== id),
     });
   };
+  completedTasks = () => {
+    this.setState({
+      tasks: this.state.tasks.filter((todo) => !todo.complete),
+    });
+  };
 
   render() {
     //Sets an array that allows us to down below not have to call components state
@@ -75,12 +82,36 @@ export class TodoList extends React.Component {
           <Todo
             key={task.id}
             task={task}
-            onDelete={() => {
-              this.handleDelete(task.id);
-            }}
             toggleComplete={() => this.toggleComplete(task.id)}
+            completedTasks={this.completedTasks}
           />
         ))}
+        {this.state.tasks.some((task) => task.complete) ? (
+          <div>
+            <Button
+              onClick={this.completedTasks}
+              color="secondary"
+              variant="outlined"
+            >
+              Delete all completed
+            </Button>
+          </div>
+        ) : null}
+        <div>
+          <Button
+            onClick={() => {
+              this.setState({
+                tasks: this.state.tasks.map((task) => ({
+                  ...task,
+                  complete: this.state.toggleAllComplete,
+                })),
+                toggleAllComplete: !this.state.toggleAllComplete,
+              });
+            }}
+          >
+            Toggle All Complete: {`${this.state.toggleAllComplete}`}{" "}
+          </Button>
+        </div>
       </div>
     );
   }
