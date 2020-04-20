@@ -45,6 +45,12 @@ export class TodoList extends React.Component {
     });
   };
 
+  handleDelete = (id) => {
+    this.setState({
+      tasks: this.state.tasks.filter((todo) => todo.id !== id),
+    });
+  };
+
   render() {
     //Sets an array that allows us to down below not have to call components state
     let tasks = [];
@@ -69,6 +75,9 @@ export class TodoList extends React.Component {
           <Todo
             key={task.id}
             task={task}
+            onDelete={() => {
+              this.handleDelete(task.id);
+            }}
             toggleComplete={() => this.toggleComplete(task.id)}
           />
         ))}
